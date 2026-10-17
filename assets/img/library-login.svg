@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" fill="none">
+  <defs>
+    <linearGradient id="wall" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182B32"/>
+      <stop offset="1" stop-color="#091B20"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="960" y1="680" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8C6340"/>
+      <stop offset="1" stop-color="#30251F"/>
+    </linearGradient>
+    <linearGradient id="lamp" x1="960" y1="170" x2="960" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE9B5" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#FFE9B5" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="shelf" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#805D43"/>
+      <stop offset="1" stop-color="#493626"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+    <pattern id="books" width="238" height="312" patternUnits="userSpaceOnUse">
+      <rect x="10" y="34" width="28" height="198" rx="4" fill="#A75D3F"/>
+      <rect x="43" y="14" width="34" height="218" rx="4" fill="#D3A65D"/>
+      <rect x="82" y="51" width="25" height="181" rx="4" fill="#426D66"/>
+      <rect x="113" y="26" width="38" height="206" rx="4" fill="#B97848"/>
+      <rect x="157" y="41" width="29" height="191" rx="4" fill="#52677C"/>
+      <rect x="192" y="10" width="32" height="222" rx="4" fill="#8D5144"/>
+      <path d="M10 222h214v16H10z" fill="url(#shelf)"/>
+      <path d="M10 281h214v16H10z" fill="url(#shelf)"/>
+      <rect x="10" y="297" width="214" height="15" fill="#35281F"/>
+    </pattern>
+  </defs>
+  <path fill="url(#wall)" d="M0 0h1920v1080H0z"/>
+  <ellipse cx="961" cy="379" fill="#E2B46B" fill-opacity=".17" filter="url(#blur)" rx="455" ry="218"/>
+  <path fill="url(#lamp)" d="M720 118h480v430H720z"/>
+  <path fill="#F0D6A7" fill-opacity=".72" d="M913 74h94l-18 83h-58z"/>
+  <path fill="#D7B77D" fill-opacity=".62" d="M890 151h140l-27 25h-86z"/>
+  <path fill="#0C1E22" d="M0 132h500v658H0zM1420 132h500v658h-500z"/>
+  <path fill="#101E21" d="M30 159h448v610H30zM1442 159h448v610h-448z"/>
+  <path fill="url(#books)" d="M30 159h448v610H30zM1442 159h448v610h-448z"/>
+  <path fill="#30271F" d="M0 770h510v38H0zM1410 770h510v38h-510z"/>
+  <path fill="url(#floor)" d="M0 808h1920v272H0z"/>
+  <path stroke="#D6AE7C" stroke-opacity=".13" stroke-width="4" d="m960 808-445 272m445-272 445 272M960 808 780 1080m180-272 180 272M0 914h1920M0 1011h1920"/>
+  <path fill="#F0D6A7" fill-opacity=".16" d="M823 807h274l168 273H655z"/>
+  <rect width="1920" height="1080" fill="#071418" fill-opacity=".52"/>
+  <path fill="url(#wall)" fill-opacity=".22" d="M0 0h1920v1080H0z"/>
+</svg>

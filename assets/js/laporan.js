@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  if (!window.elibraryHasRole('admin')) return;
+
   const printButton = document.querySelector('#printButton');
   const exportButton = document.querySelector('#exportButton');
   const filterButton = document.querySelector('#filterPeriodButton');

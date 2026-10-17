@@ -28,6 +28,8 @@ function renderMemberTable(members) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (!window.elibraryHasRole('admin')) return;
+
   const form = document.querySelector('#memberForm');
   const status = document.querySelector('#memberFormStatus');
 

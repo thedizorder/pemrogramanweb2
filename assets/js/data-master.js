@@ -99,6 +99,8 @@ function renderBookTable(filteredBooks = null) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (!window.elibraryHasRole('admin')) return;
+
   const searchInput = document.getElementById('bookSearch');
   const modal = document.querySelector('.modal');
   const form = document.getElementById('bookForm');

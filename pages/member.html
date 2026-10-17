@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Anggota E-Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body data-page="member-portal">
+    <main class="page-content member-portal">
+      <header class="member-portal-header">
+        <div>
+          <p class="muted" style="margin: 0 0 0.35rem;">Portal Anggota</p>
+          <h1>Halo, <span data-user-name>Anggota</span></h1>
+        </div>
+        <button class="secondary-btn" type="button" data-logout style="color: var(--text); border-color: var(--line);">Keluar</button>
+      </header>
+
+      <section class="card">
+        <h2 class="panel-title">Ajukan Peminjaman Buku</h2>
+        <p class="muted">Pilih buku dan lama peminjaman. Permintaan akan diproses setelah dikonfirmasi admin.</p>
+        <form id="memberLoanRequestForm" style="margin-top: 1rem;">
+          <div class="field">
+            <label for="requestBook">Buku yang ingin dipinjam</label>
+            <select id="requestBook" required>
+              <option value="">Memuat daftar buku...</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="requestLoanDays">Lama peminjaman (hari)</label>
+            <input id="requestLoanDays" type="number" min="1" max="30" value="7" required />
+          </div>
+          <button class="primary-btn" type="submit">Kirim Permintaan</button>
+          <p id="memberRequestStatus" role="status" aria-live="polite" style="font-weight: 700;"></p>
+        </form>
+      </section>
+
+      <section class="card table-card">
+        <h2 class="panel-title">Riwayat Permintaan Saya</h2>
+        <div style="overflow-x: auto;">
+          <table id="memberRequestTable">
+            <thead>
+              <tr>
+                <th>Buku</th>
+                <th>Tanggal Pengajuan</th>
+                <th>Lama Pinjam</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/member-portal.js"></script>
+  </body>
+</html>

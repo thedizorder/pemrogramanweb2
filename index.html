@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Admin E-Library</title>
+    <title>Masuk E-Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,27 +13,82 @@
     <main class="login-card">
       <div class="login-head">
         <div class="login-brand">E</div>
-        <h2>Masuk Admin</h2>
+        <div class="login-mascots" aria-hidden="true">
+          <div class="login-mascot mascot-blue"><span class="mascot-eyes"><i><b></b></i><i><b></b></i></span><span class="mascot-mouth"></span><span class="mascot-hands"><i></i><i></i></span></div>
+          <div class="login-mascot mascot-green"><span class="mascot-eyes"><i><b></b></i><i><b></b></i></span><span class="mascot-mouth"></span><span class="mascot-hands"><i></i><i></i></span></div>
+          <div class="login-mascot mascot-orange"><span class="mascot-eyes"><i><b></b></i><i><b></b></i></span><span class="mascot-mouth"></span><span class="mascot-hands"><i></i><i></i></span></div>
+        </div>
+        <h2>Masuk E-Library</h2>
         <p class="muted">Sistem Informasi Perpustakaan Digital</p>
       </div>
 
-      <form id="loginForm" class="login-form">
-        <div class="field">
-          <label for="email">Email / Username</label>
-          <input id="email" name="username" type="text" value="admin@perpus.id" autocomplete="username" required />
-        </div>
+      <div class="login-tabs" role="tablist" aria-label="Jenis akses">
+        <button class="login-tab active" type="button" role="tab" aria-selected="true" aria-controls="adminLoginPanel" data-login-tab="admin">Login Admin</button>
+        <button class="login-tab" type="button" role="tab" aria-selected="false" aria-controls="memberLoginPanel" data-login-tab="member">Login Anggota</button>
+        <button class="login-tab" type="button" role="tab" aria-selected="false" aria-controls="memberRegisterPanel" data-login-tab="register">Daftar Anggota</button>
+      </div>
 
-        <div class="field">
-          <label for="password">Password</label>
-          <input id="password" name="password" type="password" value="admin123" autocomplete="current-password" required />
-        </div>
+      <section id="adminLoginPanel" class="login-panel" role="tabpanel" data-login-panel="admin">
+        <form id="loginForm" class="login-form">
+          <div class="field">
+            <label for="email">Email / Username Admin</label>
+            <input id="email" name="username" type="text" value="admin@perpus.id" autocomplete="username" required />
+          </div>
 
-        <button class="primary-btn" type="submit">Masuk ke Dashboard</button>
-        <p id="loginStatus" role="status" aria-live="polite" style="margin: 0; font-weight: 700; min-height: 1.2em;"></p>
-      </form>
+          <div class="field">
+            <label for="password">Password Admin</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required />
+          </div>
+
+          <button class="primary-btn" type="submit">Masuk sebagai Admin</button>
+          <p id="loginStatus" role="status" aria-live="polite" style="margin: 0; font-weight: 700; min-height: 1.2em;"></p>
+        </form>
+      </section>
+
+      <section id="memberLoginPanel" class="login-panel" role="tabpanel" data-login-panel="member" hidden>
+        <form id="memberLoginForm" class="login-form">
+          <div class="field">
+            <label for="memberLoginEmail">Email Anggota</label>
+            <input id="memberLoginEmail" name="email" type="email" autocomplete="username" required />
+          </div>
+          <div class="field">
+            <label for="memberLoginPassword">Password</label>
+            <input id="memberLoginPassword" name="password" type="password" autocomplete="current-password" required />
+          </div>
+          <button class="primary-btn" type="submit">Masuk sebagai Anggota</button>
+          <p id="memberLoginStatus" role="status" aria-live="polite" style="margin: 0; font-weight: 700; min-height: 1.2em;"></p>
+        </form>
+      </section>
+
+      <section id="memberRegisterPanel" class="login-panel" role="tabpanel" data-login-panel="register" hidden>
+        <form id="memberRegisterForm" class="login-form">
+          <div class="field">
+            <label for="registerName">Nama Lengkap</label>
+            <input id="registerName" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="registerPhone">Nomor Telepon</label>
+            <input id="registerPhone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+          <div class="field">
+            <label for="registerEmail">Email</label>
+            <input id="registerEmail" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="registerAddress">Alamat</label>
+            <input id="registerAddress" name="address" autocomplete="street-address" required />
+          </div>
+          <div class="field">
+            <label for="registerPassword">Buat Password</label>
+            <input id="registerPassword" name="password" type="password" minlength="6" autocomplete="new-password" required />
+          </div>
+          <button class="primary-btn" type="submit">Daftar sebagai Anggota</button>
+          <p id="memberRegisterStatus" role="status" aria-live="polite" style="margin: 0; font-weight: 700; min-height: 1.2em;"></p>
+        </form>
+      </section>
 
       <div class="login-footer">
-        Demo admin: admin@perpus.id / admin123
+        Akun admin demo: admin@perpus.id / admin123
       </div>
     </main>
 

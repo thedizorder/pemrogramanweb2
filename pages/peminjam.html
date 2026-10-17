@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Peminjam E-Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body data-page="peminjam">
+    <div class="page-shell">
+      <aside class="sidebar open">
+        <div class="sidebar-header">
+          <div class="brand">
+            <div class="brand-mark">E</div>
+            <span>E-Library</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">Menu</div>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html" data-page="dashboard"><span class="icon">◫</span>Dashboard</a></li>
+            <li><a class="nav-link" href="data-master.html" data-page="data-master"><span class="icon">▣</span>Data Master</a></li>
+            <li><a class="nav-link" href="form.html" data-page="form"><span class="icon">✎</span>Permintaan & Peminjaman</a></li>
+            <li><a class="nav-link active" href="peminjam.html" data-page="peminjam"><span class="icon">▤</span>Daftar Peminjam</a></li>
+            <li><a class="nav-link" href="anggota.html" data-page="anggota"><span class="icon">＋</span>Pendaftaran Anggota</a></li>
+            <li><a class="nav-link" href="laporan.html" data-page="laporan"><span class="icon">▥</span>Laporan</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="icon-button" type="button" data-sidebar-toggle aria-label="Buka atau tutup menu">☰</button>
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="borrowerSearch" type="search" placeholder="Cari nama anggota, buku, atau ID..." data-table-search aria-label="Cari daftar peminjam" />
+            </label>
+          </div>
+          <div class="topbar-right">
+            <button class="icon-button" type="button" data-logout title="Logout" aria-label="Logout">⇠</button>
+            <div class="icon-button" aria-label="Profil admin" data-user-name>A</div>
+          </div>
+        </header>
+
+        <section class="page-content">
+          <div class="borrower-heading">
+            <div>
+              <span class="hero-badge">Sirkulasi buku</span>
+              <h1>Daftar Peminjam</h1>
+              <p class="muted">Pantau lama pinjam, tanggal jatuh tempo, dan sisa waktu setiap anggota.</p>
+            </div>
+            <button class="secondary-btn borrower-export" id="exportBorrowers" type="button">Export CSV</button>
+          </div>
+
+          <div class="grid-4 borrower-stats" aria-label="Ringkasan peminjaman">
+            <article class="card stat-card">
+              <div class="stat-label">Peminjaman aktif</div>
+              <div class="stat-value" id="activeLoansCount">0</div>
+              <div class="stat-meta">Belum dikembalikan</div>
+            </article>
+            <article class="card stat-card">
+              <div class="stat-label">Segera jatuh tempo</div>
+              <div class="stat-value" id="dueSoonCount">0</div>
+              <div class="stat-meta">Dalam 3 hari</div>
+            </article>
+            <article class="card stat-card">
+              <div class="stat-label">Terlambat</div>
+              <div class="stat-value" id="overdueCount">0</div>
+              <div class="stat-meta">Melewati batas kembali</div>
+            </article>
+            <article class="card stat-card">
+              <div class="stat-label">Total transaksi</div>
+              <div class="stat-value" id="totalLoansCount">0</div>
+              <div class="stat-meta">Seluruh riwayat peminjaman</div>
+            </article>
+          </div>
+
+          <section class="card table-card borrower-table-card">
+            <div class="table-actions">
+              <div>
+                <h2 class="panel-title">Rincian Peminjaman</h2>
+                <p class="muted">Sisa hari dihitung otomatis dari tanggal hari ini hingga batas pengembalian.</p>
+              </div>
+              <label class="borrower-filter">
+                <span class="muted">Status</span>
+                <select id="borrowerStatusFilter" aria-label="Filter status peminjaman">
+                  <option value="all">Semua status</option>
+                  <option value="Aktif">Aktif</option>
+                  <option value="Terlambat">Terlambat</option>
+                  <option value="Selesai">Selesai</option>
+                </select>
+              </label>
+            </div>
+            <p id="borrowerStatus" role="status" aria-live="polite" class="borrower-status"></p>
+            <div class="borrower-table-scroll">
+              <table id="borrowerTable">
+                <thead>
+                  <tr>
+                    <th>ID Peminjaman</th>
+                    <th>Anggota</th>
+                    <th>Buku</th>
+                    <th>Tanggal Pinjam</th>
+                    <th>Batas Kembali</th>
+                    <th>Lama Pinjam</th>
+                    <th>Sisa Waktu</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              <div id="borrowerEmptyState" class="borrower-empty" hidden>
+                <span aria-hidden="true">📚</span>
+                <strong>Belum ada data peminjam</strong>
+                <p>Transaksi peminjaman yang sudah disimpan akan tampil di sini.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/peminjam.js"></script>
+  </body>
+</html>

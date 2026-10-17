@@ -17,7 +17,6 @@
             <div class="brand-mark">E</div>
             <span>E-Library</span>
           </div>
-          <button class="icon-button" type="button" data-sidebar-toggle>☰</button>
         </div>
 
         <div class="nav-section">
@@ -25,7 +24,8 @@
           <ul class="nav-list">
             <li><a class="nav-link" href="dashboard.html" data-page="dashboard"><span class="icon">◫</span>Dashboard</a></li>
             <li><a class="nav-link" href="data-master.html" data-page="data-master"><span class="icon">▣</span>Data Master</a></li>
-            <li><a class="nav-link active" href="form.html" data-page="form"><span class="icon">✎</span>Form</a></li>
+            <li><a class="nav-link active" href="form.html" data-page="form"><span class="icon">✎</span>Permintaan & Peminjaman</a></li>
+            <li><a class="nav-link" href="peminjam.html" data-page="peminjam"><span class="icon">▤</span>Daftar Peminjam</a></li>
             <li><a class="nav-link" href="anggota.html" data-page="anggota"><span class="icon">＋</span>Pendaftaran Anggota</a></li>
             <li><a class="nav-link" href="laporan.html" data-page="laporan"><span class="icon">▤</span>Laporan</a></li>
           </ul>
@@ -49,6 +49,29 @@
         </header>
 
         <section class="page-content">
+          <div class="card table-card">
+            <div class="table-actions">
+              <div>
+                <h2 class="panel-title">Permintaan Peminjaman Anggota</h2>
+                <p class="muted">Konfirmasi permintaan anggota untuk membuat peminjaman dan memperbarui stok buku.</p>
+              </div>
+            </div>
+            <p id="requestAdminStatus" role="status" aria-live="polite" style="font-weight: 700;"></p>
+            <table id="loanRequestTable">
+              <thead>
+                <tr>
+                  <th>Anggota</th>
+                  <th>Buku</th>
+                  <th>Tanggal Permintaan</th>
+                  <th>Lama Pinjam</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
           <div class="card">
             <div class="panel-header">
               <div>

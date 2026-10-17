@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  if (!window.elibraryHasRole('admin')) return;
+
   const trendCanvas = document.getElementById('trendChart');
   if (trendCanvas) {
     new Chart(trendCanvas, {
