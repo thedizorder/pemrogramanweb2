@@ -55,44 +55,47 @@ function renderBookTable(filteredBooks = null) {
   if (!tbody) return;
 
   const books = filteredBooks ?? getBooks();
-  tbody.innerHTML = books.map((book) => `
-    <tr data-row>
-      <td>${book.id}</td>
-      <td>${book.isbn}</td>
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.category}</td>
-      <td><span class="badge ${getBadgeClass(book.status)}">${book.status}</span></td>
-      <td>${book.stock}</td>
-      <td class="row-actions">
-        <button class="text-btn" type="button" data-book-edit="${book.id}">Edit</button>
-        <button class="text-btn danger" type="button" data-book-delete="${book.id}">Hapus</button>
-      </td>
-    </tr>
-  `).join('');
+  const fragment = document.createDocumentFragment();
 
-  document.querySelectorAll('[data-book-edit]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const target = getBooks().find((book) => book.id === button.dataset.bookEdit);
-      if (target) openBookModal('edit', target);
+  books.forEach((book) => {
+    const row = document.createElement('tr');
+    row.dataset.row = '';
+
+    [book.id, book.isbn, book.title, book.author, book.category].forEach((value) => {
+      const cell = document.createElement('td');
+      cell.textContent = value;
+      row.appendChild(cell);
     });
+
+    const statusCell = document.createElement('td');
+    const badge = document.createElement('span');
+    badge.className = `badge ${getBadgeClass(book.status)}`;
+    badge.textContent = book.status;
+    statusCell.appendChild(badge);
+    row.appendChild(statusCell);
+
+    const stockCell = document.createElement('td');
+    stockCell.textContent = book.stock;
+    row.appendChild(stockCell);
+
+    const actionsCell = document.createElement('td');
+    actionsCell.className = 'row-actions';
+    const editButton = document.createElement('button');
+    editButton.className = 'text-btn';
+    editButton.type = 'button';
+    editButton.dataset.bookEdit = book.id;
+    editButton.textContent = 'Edit';
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'text-btn danger';
+    deleteButton.type = 'button';
+    deleteButton.dataset.bookDelete = book.id;
+    deleteButton.textContent = 'Hapus';
+    actionsCell.append(editButton, deleteButton);
+    row.appendChild(actionsCell);
+    fragment.appendChild(row);
   });
 
-  document.querySelectorAll('[data-book-delete]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const id = button.dataset.bookDelete;
-      const books = getBooks();
-      const target = books.find((book) => book.id === id);
-      if (!target) return;
-
-      const confirmed = window.confirm(`Hapus buku ${target.title}?`);
-      if (!confirmed) return;
-
-      const nextBooks = books.filter((book) => book.id !== id);
-      saveBooks(nextBooks);
-      renderBookTable();
-    });
-  });
+  tbody.replaceChildren(fragment);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -102,8 +105,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const addButton = document.querySelector('[data-open-modal]');
   const closeButton = document.querySelector('[data-close-modal]');
   const exportButton = document.getElementById('exportBookTable');
+  const bookTableBody = document.querySelector('#bookTable tbody');
 
   renderBookTable();
+
+  if (bookTableBody) {
+    bookTableBody.addEventListener('click', (event) => {
+      const button = event.target instanceof Element
+        ? event.target.closest('[data-book-edit], [data-book-delete]')
+        : null;
+      if (!button) return;
+
+      if (button.hasAttribute('data-book-edit')) {
+        const target = getBooks().find((book) => book.id === button.dataset.bookEdit);
+        if (target) openBookModal('edit', target);
+        return;
+      }
+
+      const id = button.dataset.bookDelete;
+      const books = getBooks();
+      const target = books.find((book) => book.id === id);
+      if (!target || !window.confirm(`Hapus buku ${target.title}?`)) return;
+
+      saveBooks(books.filter((book) => book.id !== id));
+      renderBookTable();
+    });
+  }
 
   if (exportButton) {
     exportButton.addEventListener('click', () => {
@@ -160,7 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const books = getBooks();
-      const payload = { id: id || `BK-${String(books.length + 1).padStart(3, '0')}`, isbn, title, author, category, status, stock };
+      const highestSequence = books.reduce((highest, book) => {
+        const match = /^BK-(\d+)$/.exec(book.id);
+        return match ? Math.max(highest, Number(match[1])) : highest;
+      }, 0);
+      const payload = { id: id || `BK-${String(highestSequence + 1).padStart(3, '0')}`, isbn, title, author, category, status, stock };
       const index = books.findIndex((book) => book.id === payload.id);
 
       if (index >= 0) {

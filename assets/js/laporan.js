@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tableBody.innerHTML = rows.map((row) => {
       const statusClass = row.status === 'Tuntas' || row.status === 'Baik' || row.status === 'Siap' ? 'success' : row.status === 'Perlu fokus' ? 'warning' : 'info';
       return `
-        <tr>
+        <tr data-row>
           <td>${row.jenis}</td>
           <td>${row.periode}</td>
           <td>${row.nilai}</td>

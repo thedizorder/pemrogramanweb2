@@ -26,6 +26,7 @@
             <li><a class="nav-link" href="dashboard.html" data-page="dashboard"><span class="icon">◫</span>Dashboard</a></li>
             <li><a class="nav-link" href="data-master.html" data-page="data-master"><span class="icon">▣</span>Data Master</a></li>
             <li><a class="nav-link active" href="form.html" data-page="form"><span class="icon">✎</span>Form</a></li>
+            <li><a class="nav-link" href="anggota.html" data-page="anggota"><span class="icon">＋</span>Pendaftaran Anggota</a></li>
             <li><a class="nav-link" href="laporan.html" data-page="laporan"><span class="icon">▤</span>Laporan</a></li>
           </ul>
         </div>
@@ -52,7 +53,7 @@
             <div class="panel-header">
               <div>
                 <h2 class="panel-title">Form Peminjaman</h2>
-                <p class="muted">Input data pinjam, hitung batas pengembalian, dan estimasi denda.</p>
+                <p class="muted">Pilih anggota terdaftar dan buku dari Data Master, lalu tentukan tanggal pengembalian.</p>
               </div>
             </div>
 
@@ -60,11 +61,16 @@
               <div class="form-grid">
                 <div class="field">
                   <label for="memberId">ID Anggota</label>
-                  <input id="memberId" type="text" placeholder="A-2026-021" required />
+                  <select id="memberId" required>
+                    <option value="">Pilih anggota terdaftar</option>
+                  </select>
+                  <small id="memberDetails" class="muted">Belum ada anggota terpilih.</small>
                 </div>
                 <div class="field">
                   <label for="bookId">ID Buku</label>
-                  <input id="bookId" type="text" placeholder="BK-001" required />
+                  <select id="bookId" required>
+                    <option value="">Pilih buku dari Data Master</option>
+                  </select>
                 </div>
                 <div class="field">
                   <label for="loanDate">Tanggal Pinjam</label>
@@ -79,16 +85,12 @@
                   <input id="dueDate" type="date" required />
                 </div>
                 <div class="field">
-                  <label for="category">Kategori</label>
-                  <select id="category" required>
-                    <option value="">Pilih kategori</option>
-                    <option>Sains</option>
-                    <option>Sosial</option>
-                    <option>Teknik</option>
-                    <option>Bisnis</option>
-                  </select>
+                  <label for="category">Kategori Buku</label>
+                  <input id="category" type="text" placeholder="Dipilih otomatis dari data buku" readonly required />
                 </div>
               </div>
+
+              <p class="muted" style="margin-top: 1rem;">Belum terdaftar? <a href="anggota.html">Daftarkan anggota perpustakaan</a>.</p>
 
               <div class="form-summary">
                 <div class="summary-item"><span>Estimasi denda per hari</span><strong>Rp 2.500</strong></div>

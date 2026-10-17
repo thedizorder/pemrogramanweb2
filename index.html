@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body class="login-page" data-page="login">
-    <div class="login-card">
+    <main class="login-card">
       <div class="login-head">
         <div class="login-brand">E</div>
         <h2>Masuk Admin</h2>
@@ -20,22 +20,22 @@
       <form id="loginForm" class="login-form">
         <div class="field">
           <label for="email">Email / Username</label>
-          <input id="email" type="text" value="admin@perpus.id" required />
+          <input id="email" name="username" type="text" value="admin@perpus.id" autocomplete="username" required />
         </div>
 
         <div class="field">
           <label for="password">Password</label>
-          <input id="password" type="password" value="admin123" required />
+          <input id="password" name="password" type="password" value="admin123" autocomplete="current-password" required />
         </div>
 
         <button class="primary-btn" type="submit">Masuk ke Dashboard</button>
-        <p id="loginStatus" style="margin: 0; font-weight: 700; min-height: 1.2em;"></p>
+        <p id="loginStatus" role="status" aria-live="polite" style="margin: 0; font-weight: 700; min-height: 1.2em;"></p>
       </form>
 
       <div class="login-footer">
         Demo admin: admin@perpus.id / admin123
       </div>
-    </div>
+    </main>
 
     <script src="assets/js/main.js"></script>
   </body>

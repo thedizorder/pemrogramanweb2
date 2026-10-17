@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  if (['dashboard', 'data-master', 'form', 'laporan'].includes(currentPage)) {
+  if (['dashboard', 'data-master', 'form', 'anggota', 'laporan'].includes(currentPage)) {
     initProtectedPages();
   }
 
@@ -186,34 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.add('active');
     }
   });
-
-  const form = document.querySelector('#loanForm');
-  if (form) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const allFields = form.querySelectorAll('input, select, textarea');
-      let valid = true;
-
-      allFields.forEach((field) => {
-        if (field.required && !field.value.trim()) {
-          valid = false;
-          field.style.borderColor = '#ef4444';
-        } else {
-          field.style.borderColor = '#e2e8f0';
-        }
-      });
-
-      const status = document.querySelector('#formStatus');
-      if (valid) {
-        status.textContent = 'Peminjaman berhasil dibuat. Data transaksi telah tersimpan.';
-        status.style.color = '#15803d';
-        form.reset();
-      } else {
-        status.textContent = 'Harap lengkapi semua field yang wajib diisi.';
-        status.style.color = '#b91c1c';
-      }
-    });
-  }
 
   const dashboardExportButton = document.querySelector('[data-download-report]');
   if (dashboardExportButton) {
